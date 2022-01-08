@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SuratPindah" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="126e3ad5-08e9-46c1-ae54-078fc37f62d8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="838"/>
+	<parameter name="surat" class="java.lang.String"/>
+	<parameter name="nama_rt" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     dt_suratpindah.`no_suratpindah` AS dt_suratpindah_no_suratpindah,
+     dt_suratpindah.`kode_pindah` AS dt_suratpindah_kode_pindah,
+     dt_suratpindah.`tanggal_surat` AS dt_suratpindah_tanggal_surat,
+     dt_suratpindah.`keterangan` AS dt_suratpindah_keterangan,
+     dt_isipindah.`kode_pindah` AS dt_isipindah_kode_pindah,
+     dt_isipindah.`no_kk` AS dt_isipindah_no_kk,
+     dt_isipindah.`no_ktp` AS dt_isipindah_no_ktp,
+     dt_isipindah.`nama_lengkap` AS dt_isipindah_nama_lengkap,
+     dt_isipindah.`jenis_kelamin` AS dt_isipindah_jenis_kelamin,
+     dt_isipindah.`status_warga` AS dt_isipindah_status_warga,
+     dt_isipindah.`status_pindah` AS dt_isipindah_status_pindah,
+     dt_isipindah.`foto` AS dt_isipindah_foto,
+     dt_isipindah.`jumlah` AS dt_isipindah_jumlah,
+     dt_erte.`kode_rt` AS dt_erte_kode_rt,
+     dt_erte.`ketua_rt` AS dt_erte_ketua_rt,
+     dt_pindah.`tanggal_pindah` AS dt_pindah_tanggal_pindah,
+     dt_pindah.`kode_pindah` AS dt_pindah_kode_pindah,
+     dt_pindah.`no_kk` AS dt_pindah_no_kk,
+     dt_pindah.`alamat_pindah` AS dt_pindah_alamat_pindah
+FROM
+     `dt_suratpindah` dt_suratpindah INNER JOIN `dt_pindah` dt_pindah ON dt_suratpindah.`kode_pindah` = dt_pindah.`kode_pindah`
+     INNER JOIN `dt_isipindah` dt_isipindah ON dt_pindah.`kode_pindah` = dt_isipindah.`kode_pindah`,
+     `dt_erte` dt_erte
+WHERE
+     dt_suratpindah.`no_suratpindah` = $P{surat}
+ AND dt_erte.`ketua_rt` = $P{nama_rt}]]>
+	</queryString>
+	<field name="dt_suratpindah_no_suratpindah" class="java.lang.String"/>
+	<field name="dt_suratpindah_kode_pindah" class="java.lang.String"/>
+	<field name="dt_suratpindah_tanggal_surat" class="java.sql.Date"/>
+	<field name="dt_suratpindah_keterangan" class="java.lang.String"/>
+	<field name="dt_isipindah_kode_pindah" class="java.lang.String"/>
+	<field name="dt_isipindah_no_kk" class="java.lang.String"/>
+	<field name="dt_isipindah_no_ktp" class="java.lang.String"/>
+	<field name="dt_isipindah_nama_lengkap" class="java.lang.String"/>
+	<field name="dt_isipindah_jenis_kelamin" class="java.lang.String"/>
+	<field name="dt_isipindah_status_warga" class="java.lang.String"/>
+	<field name="dt_isipindah_status_pindah" class="java.lang.String"/>
+	<field name="dt_isipindah_foto" class="java.lang.String"/>
+	<field name="dt_isipindah_jumlah" class="java.lang.Integer"/>
+	<field name="dt_erte_kode_rt" class="java.lang.String"/>
+	<field name="dt_erte_ketua_rt" class="java.lang.String"/>
+	<field name="dt_pindah_tanggal_pindah" class="java.sql.Date"/>
+	<field name="dt_pindah_kode_pindah" class="java.lang.String"/>
+	<field name="dt_pindah_no_kk" class="java.lang.String"/>
+	<field name="dt_pindah_alamat_pindah" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="42" y="163" width="476" height="395" uuid="656a9773-f868-4592-9da0-7fc5fde21067"/>
+				<imageExpression><![CDATA["washout.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<staticText>
+				<reportElement x="134" y="64" width="421" height="32" uuid="b5747470-e4b5-461f-abde-7b5f03674aa9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KECAMATAN PANCORAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="32" width="421" height="32" uuid="8139c5ce-2192-486f-97c3-70a3a2d69e57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KELURAHAN DUREN TIGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="0" width="421" height="32" uuid="a69ab587-f115-4ca2-a4e8-173e82888d21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEMERINTAH KOTA ADMINISTRASI JAKARTA SELATAN]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="134" height="119" uuid="a7737af3-9dcf-4acd-bc3d-0f7cfa50872a"/>
+				<imageExpression><![CDATA["dki.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="129" width="555" height="1" uuid="2ffa18fb-545f-490e-9d8a-f7d5bda13904"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="178" splitType="Stretch">
+			<staticText>
+				<reportElement x="177" y="10" width="182" height="22" uuid="73786893-14c1-4056-8130-e1bde4a9ce05"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SURAT KETERANGAN PINDAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="32" width="11" height="14" uuid="10763823-0f49-4bfa-92a4-29bc47000a8c"/>
+				<text><![CDATA[ /]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="32" width="17" height="14" uuid="20a16abc-9acd-4555-ad85-5afc011b5bdb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="32" width="46" height="14" uuid="349c9a4b-7927-440e-a301-466daf8d08e1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  - RW 05   /]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="69" width="463" height="20" uuid="f5a03c8a-0806-4eec-b48e-b2953cda09cb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Saya yang bertanda tangan di bawah ini atas nama Ketua RT.014/RW 05 Kelurahan Duren Tiga ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="153" width="32" height="25" uuid="7f751947-0493-459d-9fea-c0c995019495"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="89" width="349" height="20" uuid="0ba36578-a7cc-49c7-9d0e-f9829f106942"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Kecamatan Pancoran menerangkan bahwa warga di bawah ini dengan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="153" width="132" height="25" uuid="94849f0f-7dd3-4f21-aff8-80d82d9870f7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO KTP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="153" width="138" height="25" uuid="5cbc633f-1445-49b5-b1f6-3cf465d3c8f7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA LENGKAP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="153" width="112" height="25" uuid="4b2ea77a-51ad-4d22-9840-9c9296ad35b1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="424" y="153" width="117" height="25" uuid="3ac0d151-ad37-4177-9178-b521fdc09e96"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TANGGAL PINDAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="123" width="153" height="20" uuid="ace2644b-239c-4665-a92f-710e39823026"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[NO KARTU KELUARGA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="163" y="123" width="153" height="20" uuid="6b24cd02-1186-4dbb-890a-93a6b7370511"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_pindah_no_kk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="32" width="32" height="14" uuid="d91c840f-9a83-4e11-b13c-977885801261"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_erte_kode_rt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="310" y="32" width="88" height="14" uuid="453a7dbc-6d36-4855-a573-045e16f12ff2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy", new java.util.Locale("id")).format($F{dt_suratpindah_tanggal_surat})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="32" width="29" height="14" uuid="3700ad72-2547-49aa-9654-8a4b52e96650"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_suratpindah_no_suratpindah}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="42" y="0" width="138" height="25" uuid="11c67c8b-02a7-4492-afba-b19cd2c53515"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_isipindah_nama_lengkap}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="132" height="25" uuid="eb7fd6e4-aa52-4622-9caa-e2bff05e0a46"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_isipindah_no_ktp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="0" width="112" height="25" uuid="0502ac43-6e48-43f8-a0a8-993f7361dcc4"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_suratpindah_keterangan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMMMM-yyyy">
+				<reportElement x="424" y="0" width="117" height="25" uuid="54762fcb-a829-43d9-a526-eba557f5f2cb"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_pindah_tanggal_pindah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="32" height="25" uuid="1d564b8b-314b-4588-b800-7d3e07f157e5"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="25" width="531" height="1" uuid="7f9f4956-45c5-4f4a-8954-2d60fa7919df"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="185" splitType="Stretch">
+			<staticText>
+				<reportElement x="393" y="43" width="156" height="25" uuid="88a56d10-a546-46a9-9958-4fb56c421400"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ketua RT 014 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="43" width="154" height="25" uuid="602e26d7-b86c-43e4-bdb7-12d0d609a42f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ketua RW 05]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="130" width="154" height="25" uuid="15d64109-e004-47f0-adf8-f76a758d031f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="393" y="130" width="156" height="25" uuid="58c70b17-0fb6-4429-9ec5-e504bab1ca76"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nama_rt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="399" y="23" width="43" height="20" uuid="cec3f49c-c9f3-455e-a0a1-9f0c7deed722"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jakarta , ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="442" y="23" width="113" height="20" uuid="4b769a7d-d18b-4be0-b3f1-07ffa686b2ad"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE, dd MMMMM yyyy", new java.util.Locale("id")).format($F{dt_suratpindah_tanggal_surat})]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Top" isUsingCache="true">
+				<reportElement x="189" y="13" width="181" height="151" uuid="bc1de74f-04e1-4288-82b9-b25767649c9e"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage( new com.google.zxing.qrcode.QRCodeWriter().encode( 
+"               Surat Keterangan Pindah"+
+"\n" +" RT 014 RW 05 DUREN TIGA, PANCORAN"+
+"\n" +"                     JAKARTA SELATAN"+
+"\n" +"----------------------------------------------------------------------"+
+"\n" +"No Surat" +"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t  : "+$F{dt_suratpindah_no_suratpindah}+
+"\n"+"No.KTP"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t  : "+$F{dt_isipindah_no_ktp}+
+"\n"+"No.KK"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t  : "+$F{dt_isipindah_no_kk}+
+"\n"+"Nama Lengkap"+"\t"+"\t"+"\t  : "+$F{dt_isipindah_nama_lengkap}+
+"\n"+"Jenis Kelamin"+"\t"+"\t"+"\t"+"\t  : "+$F{dt_isipindah_jenis_kelamin}+
+"\n"+"Tanggal Pindah        : "+new SimpleDateFormat("EEEE, dd MMMMM yyyy", new java.util.Locale("id")).format($F{dt_pindah_tanggal_pindah})+
+"\n"+"Alamat Pindah"+"\t"+"\t"+"\t"+"\t: "+$F{dt_pindah_alamat_pindah}+
+"\n" +
+"\n" +"----------------------------------------------------------------------"+
+"\n" +"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t   "+new SimpleDateFormat("EEEE, dd MMMMM yyyy", new java.util.Locale("id")).format($F{dt_suratpindah_tanggal_surat})+
+"\n" + "\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t  "+"Ketua RT"+
+"\n" +
+"\n" +
+"\n" +"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t   "+$P{nama_rt},
+com.google.zxing.BarcodeFormat.QR_CODE,300,300))]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="39" width="74" height="25" uuid="47d75002-6ff0-44e4-be5f-f04f39c669fa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pindah Ke  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="39" width="471" height="25" uuid="6c2ebbe3-2d88-437d-8f94-c802c528c229"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_pindah_alamat_pindah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="14" width="179" height="25" uuid="48703355-cba9-46fd-ab94-7e679571a085"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mengajukan Permohonan untuk :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

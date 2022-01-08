@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanWargaStatus" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05b24f0a-6e2e-413a-885d-f7d2695537c1">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="403"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="status_warga" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nama_rt" class="java.lang.String"/>
+	<parameter name="defaultValue" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer("1")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     dt_warga.`kode_warga` AS dt_warga_kode_warga,
+     dt_warga.`no_ktp` AS dt_warga_no_ktp,
+     dt_warga.`no_kk` AS dt_warga_no_kk,
+     dt_warga.`nama_lengkap` AS dt_warga_nama_lengkap,
+     dt_warga.`jenis_kelamin` AS dt_warga_jenis_kelamin,
+     dt_warga.`tempat_lahir` AS dt_warga_tempat_lahir,
+     dt_warga.`tgl_lahir` AS dt_warga_tgl_lahir,
+     dt_warga.`agama` AS dt_warga_agama,
+     dt_warga.`pekerjaan` AS dt_warga_pekerjaan,
+     dt_warga.`pendidikan` AS dt_warga_pendidikan,
+     dt_warga.`alamat_tinggal` AS dt_warga_alamat_tinggal,
+     dt_warga.`alamat_asal` AS dt_warga_alamat_asal,
+     dt_warga.`status_keluarga` AS dt_warga_status_keluarga,
+     dt_warga.`status_warga` AS dt_warga_status_warga,
+     dt_warga.`telepon` AS dt_warga_telepon,
+     dt_warga.`jumlah_data` AS dt_warga_jumlah_data,
+     dt_warga.`kode_rt` AS dt_warga_kode_rt,
+     dt_warga.`foto` AS dt_warga_foto,
+     dt_erte.`id` AS dt_erte_id,
+     dt_erte.`ketua_rt` AS dt_erte_ketua_rt
+FROM
+     `dt_warga` dt_warga,
+     `dt_erte` dt_erte
+WHERE
+     dt_warga.`status_warga` = $P{status_warga}
+ AND dt_erte.`ketua_rt` = $P{nama_rt}
+ORDER BY
+     dt_warga.`no_kk` ASC]]>
+	</queryString>
+	<field name="dt_warga_kode_warga" class="java.lang.String"/>
+	<field name="dt_warga_no_ktp" class="java.lang.String"/>
+	<field name="dt_warga_no_kk" class="java.lang.String"/>
+	<field name="dt_warga_nama_lengkap" class="java.lang.String"/>
+	<field name="dt_warga_jenis_kelamin" class="java.lang.String"/>
+	<field name="dt_warga_tempat_lahir" class="java.lang.String"/>
+	<field name="dt_warga_tgl_lahir" class="java.sql.Date"/>
+	<field name="dt_warga_agama" class="java.lang.String"/>
+	<field name="dt_warga_pekerjaan" class="java.lang.String"/>
+	<field name="dt_warga_pendidikan" class="java.lang.String"/>
+	<field name="dt_warga_alamat_tinggal" class="java.lang.String"/>
+	<field name="dt_warga_alamat_asal" class="java.lang.String"/>
+	<field name="dt_warga_status_keluarga" class="java.lang.String"/>
+	<field name="dt_warga_status_warga" class="java.lang.String"/>
+	<field name="dt_warga_telepon" class="java.lang.String"/>
+	<field name="dt_warga_jumlah_data" class="java.lang.Integer"/>
+	<field name="dt_warga_kode_rt" class="java.lang.String"/>
+	<field name="dt_warga_foto" class="java.lang.String"/>
+	<field name="dt_erte_id" class="java.lang.Integer"/>
+	<field name="dt_erte_ketua_rt" class="java.lang.String"/>
+	<variable name="no_urut" class="java.lang.Integer" resetType="None" calculation="Count">
+		<variableExpression><![CDATA[$V{no_urut}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="58" y="123" width="439" height="388" uuid="c31c328f-ccaf-4802-8fb1-32a6182b55fc"/>
+				<imageExpression><![CDATA["washout.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="186" splitType="Stretch">
+			<staticText>
+				<reportElement x="123" y="13" width="427" height="30" uuid="de3dd736-6f97-40c0-9ba0-20c2ab45611c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA WARGA RT 014 RW 05]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="43" width="427" height="30" uuid="2b38b555-9cd8-44bb-a9e1-909fa896bfaf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KELURAHAN DUREN TIGA, KECAMATAN PANCORAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="73" width="427" height="30" uuid="37a57732-3f6e-4969-88cc-2679929c3214"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JAKARTA SELATAN]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="121" height="119" uuid="05019b2a-0538-4ee5-83c0-71919735d940"/>
+				<imageExpression><![CDATA["dki.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="149" width="79" height="33" forecolor="#000000" backcolor="#FFFFFF" uuid="451ea55b-aa11-4ff6-b8e5-793c83a85332"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Warga :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="149" width="59" height="33" uuid="4e6b1340-8f4b-4eac-9c52-c907bd38853e"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_warga_status_warga}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="135" width="554" height="1" uuid="2064e1c7-4d71-46ba-b8d0-5dbe1ce67226"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="41" y="1" width="98" height="33" forecolor="#000000" backcolor="#ECECEC" uuid="4bee2886-dc31-47f7-ac0e-04a75b484cc7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. KTP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="139" y="1" width="96" height="33" forecolor="#000000" backcolor="#ECECEC" uuid="206f078e-76f1-4de4-9ebf-4d9f359483ec"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Kartu Keluarga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="429" y="1" width="126" height="33" forecolor="#000000" backcolor="#ECECEC" uuid="59a47ee2-8031-469d-bbf7-948e5e45ab4f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat Sekarang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="357" y="1" width="72" height="33" forecolor="#000000" backcolor="#ECECEC" uuid="bba712e9-fb43-4b24-8ae9-1d7d269a0ad1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="41" height="33" forecolor="#000000" backcolor="#ECECEC" uuid="d1501999-18a9-4e5a-b43e-44a5f0c227bf"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="235" y="1" width="122" height="33" forecolor="#000000" backcolor="#ECECEC" uuid="1269a8a4-b0d1-4851-98c4-66c7216350c3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Lengkap]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="0" width="98" height="37" uuid="5885a74c-59f0-4369-aaca-da6902d35c8d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_warga_no_ktp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="0" width="72" height="37" uuid="a92d810d-849c-446a-bd3f-bcbee45d16a8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_warga_jenis_kelamin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="0" width="126" height="37" uuid="6b313b42-d6b4-418c-86de-3d7b5bcfbe6b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_warga_alamat_tinggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="0" width="122" height="37" uuid="0bae6dc9-e913-4320-a1df-7e69639f7bad"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_warga_nama_lengkap}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="41" height="37" uuid="92701f21-109f-4e7b-b82b-0e479149c9ac"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Integer($V{no_urut}.intValue()+$P{defaultValue}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="0" width="96" height="37" uuid="d5c7fd18-d907-4b72-b564-c43196443a8c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_warga_no_kk}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="161">
+			<staticText>
+				<reportElement x="397" y="9" width="43" height="20" uuid="a04f4b4f-eee0-476f-8c86-3d2e3740ab19"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jakarta , ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="440" y="9" width="110" height="20" forecolor="#000000" uuid="2a195c0a-026d-417a-a6ba-d36373b2c860"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE, dd MMMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="406" y="33" width="129" height="20" uuid="029671d9-8677-4545-a5c9-204a3fd98150"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Ketua RT 014 / RW 05]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="406" y="117" width="129" height="31" uuid="2af9cddc-0932-46ed-9b1f-276ca4630737"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nama_rt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="39" width="129" height="20" uuid="ef12dc1f-ecbb-4ae7-83dc-3e18c8cb3458"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Ketua RW 05]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="123" width="129" height="31" uuid="77d27952-33a8-410b-be67-0c8e0743cb28"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="235" y="25" width="100" height="19" uuid="a77c4178-c50d-46fb-b2e3-c74021cd7555"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
